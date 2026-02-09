@@ -15,7 +15,6 @@
     --card: #181830;
     --card2: #1e1e3a;
     --accent: #e94560;
-    --accent2: #ff6b81;
     --cyan: #53d8fb;
     --green: #4ecca3;
     --gold: #ffd700;
@@ -36,8 +35,6 @@
     flex-direction: column;
     touch-action: manipulation;
   }
-
-  /* ===== Header ===== */
   .header {
     background: var(--card);
     padding: 12px 16px;
@@ -51,8 +48,6 @@
   }
   .header h1 { font-size: 1.1rem; color: var(--accent); }
   .header .date { font-size: 0.75rem; color: var(--text2); }
-
-  /* ===== Main scroll area ===== */
   .main {
     flex: 1;
     overflow-y: auto;
@@ -61,8 +56,6 @@
     padding-bottom: 16px;
     -webkit-overflow-scrolling: touch;
   }
-
-  /* ===== Bottom Tab Bar ===== */
   .tab-bar {
     display: flex;
     background: var(--card);
@@ -109,17 +102,6 @@
     border-top: 3px solid transparent;
   }
   .tab-add:active { opacity: 0.6; }
-
-  /* ===== Cards ===== */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-
-  /* ===== Dashboard ===== */
   .member-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -133,11 +115,7 @@
     justify-content: space-between;
     margin-bottom: 12px;
   }
-  .member-name {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
+  .member-name { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
   .streak-badge {
     background: var(--accent);
     color: #fff;
@@ -162,7 +140,6 @@
   .mini-stat .lbl { font-size: 0.65rem; color: var(--text2); margin-top: 2px; }
   .mini-stat .val.down { color: var(--green); }
   .mini-stat .val.up { color: var(--accent); }
-
   .action-btns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -182,8 +159,6 @@
   .btn-weight { background: var(--accent); color: #fff; }
   .btn-attend { background: var(--green); color: var(--bg); }
   .btn-attend.done { background: var(--card2); color: var(--green); border: 2px solid var(--green); }
-
-  /* ===== Competition ===== */
   .comp-container { max-width: 600px; margin: 0 auto; }
   .month-nav {
     display: flex;
@@ -221,20 +196,12 @@
   .ranking-item.r1 { border-left-color: var(--gold); }
   .ranking-item.r2 { border-left-color: var(--silver); }
   .ranking-item.r3 { border-left-color: var(--bronze); }
-  .rank-num {
-    font-size: 1.3rem;
-    font-weight: 900;
-    width: 36px;
-    text-align: center;
-    color: var(--text2);
-  }
+  .rank-num { font-size: 1.3rem; font-weight: 900; width: 36px; text-align: center; color: var(--text2); }
   .r1 .rank-num { color: var(--gold); }
   .r2 .rank-num { color: var(--silver); }
   .r3 .rank-num { color: var(--bronze); }
   .rank-name { flex: 1; margin-left: 12px; font-weight: 600; }
   .rank-val { font-weight: 700; font-size: 0.95rem; }
-
-  /* ===== Individual ===== */
   .ind-container { max-width: 600px; margin: 0 auto; }
   .stats-grid {
     display: grid;
@@ -250,8 +217,6 @@
   }
   .stat-card .sv { font-size: 1.3rem; font-weight: 900; color: var(--cyan); }
   .stat-card .sl { font-size: 0.6rem; color: var(--text2); margin-top: 3px; }
-
-  /* Calendar */
   .cal-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -285,13 +250,7 @@
   .cal-cell .dn { font-size: 0.75rem; font-weight: 700; color: var(--text); }
   .cal-cell .dw { font-size: 0.55rem; color: var(--cyan); margin-top: 1px; }
   .cal-cell .dc { font-size: 0.55rem; color: var(--green); }
-
-  .section-title {
-    font-size: 0.9rem;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
+  .section-title { font-size: 0.9rem; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
   .del-btn {
     display: block;
     margin: 24px auto 0;
@@ -304,8 +263,6 @@
     cursor: pointer;
   }
   .del-btn:active { background: rgba(233,69,96,0.15); }
-
-  /* ===== Modal ===== */
   .modal-bg {
     display: none;
     position: fixed;
@@ -325,23 +282,9 @@
     max-width: 420px;
     animation: slideUp 0.25s ease;
   }
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
-  .modal h3 {
-    color: var(--accent);
-    font-size: 1rem;
-    margin-bottom: 18px;
-    text-align: center;
-  }
-  .modal-handle {
-    width: 40px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 4px;
-    margin: 0 auto 16px;
-  }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .modal h3 { color: var(--accent); font-size: 1rem; margin-bottom: 18px; text-align: center; }
+  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 0 auto 16px; }
   .modal input[type="number"],
   .modal input[type="text"] {
     width: 100%;
@@ -360,7 +303,6 @@
   .modal-btns .btn { flex: 1; padding: 14px; font-size: 0.95rem; border-radius: 12px; }
   .btn-ok { background: var(--accent); color: #fff; }
   .btn-no { background: var(--card2); color: var(--text2); }
-
   .toggle-row {
     display: flex;
     align-items: center;
@@ -370,8 +312,7 @@
   }
   .toggle-row label { font-size: 0.9rem; color: var(--text2); }
   .toggle {
-    width: 50px;
-    height: 28px;
+    width: 50px; height: 28px;
     background: var(--border);
     border-radius: 14px;
     position: relative;
@@ -383,15 +324,37 @@
   .toggle::after {
     content: '';
     position: absolute;
-    width: 22px;
-    height: 22px;
+    width: 22px; height: 22px;
     background: #fff;
     border-radius: 50%;
-    top: 3px;
-    left: 3px;
+    top: 3px; left: 3px;
     transition: transform 0.2s;
   }
   .toggle.on::after { transform: translateX(22px); }
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text2);
+    font-size: 0.9rem;
+  }
+  .toast {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card2);
+    color: var(--text);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
 </style>
 </head>
 <body>
@@ -401,8 +364,9 @@
   <div class="date" id="dateDisp"></div>
 </div>
 
-<div class="main" id="main"></div>
+<div class="main" id="main"><div class="loading">불러오는 중...</div></div>
 <div class="tab-bar" id="tabs"></div>
+<div class="toast" id="toast"></div>
 
 <!-- Weight Modal -->
 <div class="modal-bg" id="mWeight">
@@ -448,15 +412,47 @@
 </div>
 
 <script>
-const KEY='dt-v2';
 const C=['#e94560','#53d8fb','#4ecca3','#ffd700','#ff6b6b','#a29bfe','#fd79a8','#00cec9','#fab1a0','#81ecec'];
-let data, tab=0, charts={}, calDate=new Date(), compDate=new Date(), wTarget=null, dTarget=null;
+let data={members:[],records:{}}, tab=0, charts={}, calDate=new Date(), compDate=new Date(), wTarget=null, dTarget=null;
 
-function load(){ const r=localStorage.getItem(KEY); return r?JSON.parse(r):{members:['쟘','푸히히','평이','에바다'],records:{}}; }
-function save(){ localStorage.setItem(KEY,JSON.stringify(data)); }
+// ===== Server API =====
+async function api(method, path, body) {
+  const opts = { method, headers: {'Content-Type':'application/json'} };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch('/api' + path, opts);
+  return res.json();
+}
+
+async function loadData() {
+  data = await api('GET', '/data');
+  if (!data.records) data.records = {};
+}
+
+async function saveRecord(member, date, weight, attended) {
+  await api('POST', '/record', { member, date, weight, attended });
+  await loadData();
+}
+
+async function apiAddMember(name) {
+  await api('POST', '/member', { name });
+  await loadData();
+}
+
+async function apiDelMember(name) {
+  await api('DELETE', '/member/' + encodeURIComponent(name));
+  await loadData();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+// ===== Helpers =====
 function td(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 function rec(m,d){ return (data.records[m]||{})[d]||null; }
-function setRec(m,d,r){ if(!data.records[m]) data.records[m]={}; data.records[m][d]=r; save(); }
 
 function latestW(m){
   if(!data.records[m]) return null;
@@ -495,10 +491,10 @@ function renderTabs(){
   h+=`<div class="tab-add" onclick="openModal('mAdd');document.getElementById('mAddIn').value='';setTimeout(()=>document.getElementById('mAddIn').focus(),300)">＋</div>`;
   el.innerHTML=h;
 }
-function go(i){ tab=i; killCharts(); renderTabs(); render(); document.getElementById('main').scrollTop=0; }
+function go(i){ tab=i; killCharts(); renderTabs(); renderView(); document.getElementById('main').scrollTop=0; }
 
 // ===== Render =====
-function render(){
+function renderView(){
   const el=document.getElementById('main');
   if(tab===0) renderDash(el);
   else if(tab===1) renderComp(el);
@@ -531,9 +527,13 @@ function renderDash(el){
   el.innerHTML=h;
 }
 
-function toggleAtt(m){
-  const t=td(); let r=rec(m,t)||{attended:false,weight:null};
-  r.attended=!r.attended; setRec(m,t,r); render();
+async function toggleAtt(m){
+  const t=td();
+  const r=rec(m,t)||{attended:false,weight:null};
+  const newAtt=!r.attended;
+  await saveRecord(m, t, r.weight, newAtt);
+  showToast(newAtt ? `${m} 출석 완료!` : `${m} 출석 취소`);
+  renderView();
 }
 
 // ----- Competition -----
@@ -571,8 +571,6 @@ function drawComp(){
     plugins:{legend:{labels:{color:'#ccc',font:{size:11},usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y}kg`}}},
     scales:{x:{ticks:{color:'#666',maxTicksLimit:10,font:{size:9}},grid:{color:'#1a1a30'}},y:{ticks:{color:'#666',callback:v=>v+'kg',font:{size:10}},grid:{color:'#1a1a30'}}}
   }});
-
-  // Ranking
   const ranks=data.members.map(mb=>({name:mb,ch:wChange(mb)})).sort((a,b)=>(a.ch??999)-(b.ch??999));
   const rl=document.getElementById('rankList');
   if(!rl) return;
@@ -602,23 +600,17 @@ function renderInd(el,idx){
   h+=`<div class="stat-card"><div class="sv">${fw||'-'}</div><div class="sl">시작(kg)</div></div>`;
   h+=`<div class="stat-card"><div class="sv">${tc>0&&lw&&fw?((lw.w-fw)/tc).toFixed(1):'-'}</div><div class="sl">회당변화</div></div>`;
   h+=`</div>`;
-
-  // Calendar
   h+=`<div class="month-nav"><button class="nav-btn" onclick="calNav(-1,${idx})">◀</button><span id="calLbl"></span><button class="nav-btn" onclick="calNav(1,${idx})">▶</button></div>`;
   h+=`<div class="cal-grid" id="calG"></div>`;
-
-  // Chart
   h+=`<div class="section-title">📈 몸무게 추이</div>`;
   h+=`<div class="chart-box"><canvas id="indC"></canvas></div>`;
-
   h+=`<button class="del-btn" onclick="delMember(${idx})">멤버 삭제</button>`;
   h+=`</div>`;
   el.innerHTML=h;
-  drawCal(m,idx);
+  drawCal(m);
   drawIndChart(m);
 }
-
-function calNav(dir,idx){ calDate.setMonth(calDate.getMonth()+dir); drawCal(data.members[idx],idx); }
+function calNav(dir,idx){ calDate.setMonth(calDate.getMonth()+dir); drawCal(data.members[idx]); }
 function drawCal(m){
   const lb=document.getElementById('calLbl');
   if(!lb) return;
@@ -650,7 +642,7 @@ function drawIndChart(m){
   const ctx=document.getElementById('indC'); if(!ctx) return;
   if(charts.ind) charts.ind.destroy();
   charts.ind=new Chart(ctx,{type:'line',data:{labels,datasets:[{
-    label:m+' 몸무게',data:vals,borderColor:'var(--accent)',backgroundColor:'rgba(233,69,96,0.1)',
+    label:m+' 몸무게',data:vals,borderColor:'#e94560',backgroundColor:'rgba(233,69,96,0.1)',
     fill:true,tension:.3,pointRadius:3,pointBackgroundColor:'#e94560',borderWidth:2
   }]},options:{
     responsive:true,maintainAspectRatio:false,
@@ -671,22 +663,25 @@ function openWeightModal(m){
   openModal('mWeight');
   setTimeout(()=>document.getElementById('mWeightIn').focus(),300);
 }
-function saveWeight(){
+async function saveWeight(){
   if(!wTarget) return;
   const v=parseFloat(document.getElementById('mWeightIn').value);
   if(isNaN(v)||v<=0) return;
-  const t=td(); let r=rec(wTarget,t)||{attended:false,weight:null};
-  r.weight=v; setRec(wTarget,t,r);
-  closeModal('mWeight'); wTarget=null; render();
+  const t=td();
+  const r=rec(wTarget,t)||{attended:false,weight:null};
+  await saveRecord(wTarget, t, v, r.attended);
+  showToast(`${wTarget} ${v}kg 저장!`);
+  closeModal('mWeight'); wTarget=null; renderView();
 }
 
-function addMember(){
+async function addMember(){
   const n=document.getElementById('mAddIn').value.trim();
   if(!n) return;
   if(data.members.includes(n)) return;
-  data.members.push(n); data.records[n]={}; save();
+  await apiAddMember(n);
+  showToast(`${n} 추가 완료!`);
   closeModal('mAdd');
-  tab=data.members.length+1; renderTabs(); render();
+  tab=data.members.length+1; renderTabs(); renderView();
 }
 
 function openDayModal(m,ds){
@@ -700,21 +695,23 @@ function openDayModal(m,ds){
   openModal('mDay');
   setTimeout(()=>document.getElementById('mDayWeight').focus(),300);
 }
-function saveDayData(){
+async function saveDayData(){
   if(!dTarget) return;
   const {m,d}=dTarget;
   const w=parseFloat(document.getElementById('mDayWeight').value);
   const att=document.getElementById('mDayAttend').classList.contains('on');
-  let r=rec(m,d)||{attended:false,weight:null};
-  r.weight=!isNaN(w)&&w>0?w:null; r.attended=att;
-  setRec(m,d,r); closeModal('mDay'); dTarget=null; render();
+  const weight=!isNaN(w)&&w>0?w:null;
+  await saveRecord(m, d, weight, att);
+  showToast('저장 완료!');
+  closeModal('mDay'); dTarget=null; renderView();
 }
 
-function delMember(idx){
+async function delMember(idx){
   const m=data.members[idx];
   if(!confirm(`"${m}" 삭제?`)) return;
-  data.members.splice(idx,1); delete data.records[m]; save();
-  tab=0; renderTabs(); render();
+  await apiDelMember(m);
+  showToast(`${m} 삭제됨`);
+  tab=0; renderTabs(); renderView();
 }
 
 // Keyboard
@@ -726,22 +723,19 @@ document.addEventListener('keydown',e=>{
     else if(document.getElementById('mDay').classList.contains('show')) saveDayData();
   }
 });
-
-// Swipe on modal to close
 document.querySelectorAll('.modal-bg').forEach(bg=>{
   bg.addEventListener('click',e=>{ if(e.target===bg) bg.classList.remove('show'); });
 });
 
-// Init
-data=load();
-const d=new Date();
-document.getElementById('dateDisp').textContent=`${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} ${['일','월','화','수','목','금','토'][d.getDay()]}`;
-renderTabs(); render();
-
-// PWA
-if('serviceWorker' in navigator){
-  // minimal offline support
+// ===== Init =====
+async function init(){
+  const d=new Date();
+  document.getElementById('dateDisp').textContent=`${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} ${['일','월','화','수','목','금','토'][d.getDay()]}`;
+  await loadData();
+  renderTabs();
+  renderView();
 }
+init();
 </script>
 </body>
 </html>
