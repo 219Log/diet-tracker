@@ -1,71 +1,101 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_FILE = path.join(__dirname, 'data.json');
+
+const supabase = createClient(
+  process.env.SUPABASE_URL || 'https://iplgeluxclcwikjbyqxr.supabase.co',
+  process.env.SUPABASE_KEY || ''
+);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// --- Data helpers ---
-function readData() {
+// --- GET all data ---
+app.get('/api/data', async (req, res) => {
   try {
-    if (fs.existsSync(DATA_FILE)) {
-      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    const { data: members } = await supabase
+      .from('members').select('name').order('id');
+    const { data: records } = await supabase
+      .from('records').select('member_name, date, weight, attended');
+
+    const memberList = members.map(m => m.name);
+    const recordMap = {};
+    for (const m of memberList) recordMap[m] = {};
+    for (const r of records) {
+      if (!recordMap[r.member_name]) recordMap[r.member_name] = {};
+      recordMap[r.member_name][r.date] = {
+        weight: r.weight != null ? Number(r.weight) : null,
+        attended: r.attended
+      };
     }
+    res.json({ members: memberList, records: recordMap });
   } catch (e) {
-    console.error('Read error:', e.message);
+    console.error('GET /api/data error:', e.message);
+    res.status(500).json({ error: e.message });
   }
-  return { members: ['쟘', '푸히히', '평이', '에바다'], records: {} };
-}
-
-function writeData(data) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
-}
-
-// Init file if not exists
-if (!fs.existsSync(DATA_FILE)) writeData(readData());
-
-// --- API ---
-app.get('/api/data', (req, res) => {
-  res.json(readData());
 });
 
-app.post('/api/record', (req, res) => {
-  const { member, date, weight, attended } = req.body;
-  if (!member || !date) return res.status(400).json({ error: 'member, date required' });
-  const data = readData();
-  if (!data.records[member]) data.records[member] = {};
-  data.records[member][date] = {
-    weight: weight != null ? weight : null,
-    attended: !!attended
-  };
-  writeData(data);
-  res.json({ ok: true });
+// --- Save record ---
+app.post('/api/record', async (req, res) => {
+  try {
+    const { member, date, weight, attended } = req.body;
+    if (!member || !date) return res.status(400).json({ error: 'member, date required' });
+
+    const { error } = await supabase
+      .from('records')
+      .upsert({
+        member_name: member,
+        date,
+        weight: weight != null ? weight : null,
+        attended: !!attended
+      }, { onConflict: 'member_name,date' });
+
+    if (error) throw error;
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('POST /api/record error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
 });
 
-app.post('/api/member', (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ error: 'name required' });
-  const data = readData();
-  if (data.members.includes(name)) return res.status(409).json({ error: 'duplicate' });
-  data.members.push(name);
-  data.records[name] = {};
-  writeData(data);
-  res.json({ ok: true });
+// --- Add member ---
+app.post('/api/member', async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) return res.status(400).json({ error: 'name required' });
+
+    const { error } = await supabase
+      .from('members')
+      .insert({ name });
+
+    if (error) {
+      if (error.code === '23505') return res.status(409).json({ error: 'duplicate' });
+      throw error;
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('POST /api/member error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
 });
 
-app.delete('/api/member/:name', (req, res) => {
-  const name = decodeURIComponent(req.params.name);
-  const data = readData();
-  const idx = data.members.indexOf(name);
-  if (idx === -1) return res.status(404).json({ error: 'not found' });
-  data.members.splice(idx, 1);
-  delete data.records[name];
-  writeData(data);
-  res.json({ ok: true });
+// --- Delete member ---
+app.delete('/api/member/:name', async (req, res) => {
+  try {
+    const name = decodeURIComponent(req.params.name);
+
+    await supabase.from('records').delete().eq('member_name', name);
+    const { error } = await supabase.from('members').delete().eq('name', name);
+
+    if (error) throw error;
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('DELETE /api/member error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.get('*', (req, res) => {
