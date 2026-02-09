@@ -6,8 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const supabase = createClient(
-  process.env.SUPABASE_URL || 'https://iplgeluxclcwikjbyqxr.supabase.co',
-  process.env.SUPABASE_KEY || ''
+  'https://iplgeluxclcwikjbyqxr.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwbGdlbHV4Y2xjd2lramJ5cXhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1Njk4MzgsImV4cCI6MjA4NjE0NTgzOH0.EF0Sgl76N11cWRuatWahJOBMQFc_FkLVbC2JBGtfaPY'
 );
 
 app.use(express.json());
