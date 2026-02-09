@@ -1,0 +1,12 @@
+{
+  "name": "diet-competition-tracker",
+  "version": "1.0.0",
+  "description": "다이어트 경쟁 트래커",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
